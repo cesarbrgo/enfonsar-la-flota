@@ -1,0 +1,252 @@
+
+#include <stdio.h>
+#include "function.h"
+
+/**Aqui començariem ensenyant-li el menu d’inici, l’usuari podria introduir les opcions desitjades fins a tres cops.**/
+
+int main()
+{   int select, count, row=0;
+    printf("***************BENVINGUT AL JOC D'ENFONÇAR LA FLOTA***************\n");
+    printf("Welcome player, escull un nivell\n");
+    printf("per nivell facil introdueix 1\n ");
+    printf("per nivell mitg introdueix 2\n");
+    printf("per nivell alt introdueix 3\n");
+    printf("et falten? introdueix 0\n");
+    count=0;
+    do{
+    printf("Introdueix l'opcio:");
+    scanf("%d",&select);
+        if (select>=0 && select<4){
+            count=3;
+        }
+        else{
+            count=count+1;
+        }
+    }while(count!=3);
+
+/**aqui he fet un codi per controlar l'opció desitjada ja que he desembolupat el codi en el compilador online
+**/
+    switch (select){
+        case 1:
+             printf("el valor de select  al match es %d \n" , select);
+             break;
+        case 2:
+             printf("el valor de select akl match es %d \n", select);
+             break;
+        case 3:
+            printf("el valor de select al match es %d \n", select);
+            break;
+    }
+
+/**creem el panel d’enfonsar la flota que es mostrara a l’usuari**/
+
+    char header[] = {' ','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H','I', 'J', '\0'};
+    char row1[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+    char row2[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+    char row3[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+    char row4[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+    char row5[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+    char row6[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+    char row7[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+    char row8[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+    char row9[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+    char row10[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+
+/**creem el panel d’enfonsar la flota on tenim les posicions on estan els baixells marcades amb una x
+**/
+    printf("   %s \n 1| %s \n 2| %s \n 3| %s \n 4| %s \n 5| %s \n 6| %s \n 7| %s \n 8| %s \n 9| %s \n 10|%s \n", header, row1,row2,row3,row4,row5,row6,row7,row8,row9,row10);
+    char aux1[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+    char aux2[]={ '0', '0', '0', '0', '0', '0', '0','0', 1,'0','\0'};
+    char aux3[]={ '0', '0', 1, '0', 1, 1, '0','0', 1,'0','\0'};
+    char aux4[]={ '0', '0', 1, '0', '0', '0', '0','0', 1,'0','\0'};
+    char aux5[]={ '0', '0', 1, '0', '0', '0', '0','0', '0','0','\0'};
+    char aux6[]={ '0', '0', '0', '0', 1, 1, 1,1, '0','0','\0'};
+    char aux7[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+    char aux8[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+    char aux9[]={ '0', '0', 1, 1, 1, 1, 1,'0', '0','0','\0'};
+    char aux10[]={ '0', '0', '0', '0', '0', '0', '0','0', '0','0','\0'};
+
+    /**fem una estructura de validacio perque introdueixi la fila
+    **/
+
+    do{
+    printf("escull una fila del 1 al 10: ");
+    scanf("%d",&row);
+    }while(row<1 || row>10);
+
+    /**creem una altra estructura de validacio perque validi la columna de la A a J comprovant el valor ASCII
+    **/
+    char col;
+    do{
+    printf("escull una columna de la A a la J, en majuscules: ");
+    scanf("%s",&col);
+    }while(col<65 || col>74);
+
+    /**asignem el valor de la lletra a la taula ascii a un valor del 1 al 10 en funcio de la columna
+    **/
+    switch (col){
+        case 65:
+             col=0;
+             break;
+        case 66:
+             col=1;
+             break;
+        case 67:
+            col=2;
+            break;
+        case 68:
+             col=3;
+             break;
+        case 69:
+            col=4;
+            break;
+        case 70:
+             col=5;
+             break;
+        case 71:
+            col=6;
+            break;
+        case 72:
+             col=7;
+             break;
+        case 73:
+            col=8;
+            break;
+        case 74:
+            col=9;
+            break;
+    }
+
+    /**comprovem si ha encertat la posicio de la nostra taula secreta i l'hi asignem un nou valor a la posició
+    **/
+
+    switch (row){
+        case 1:
+             printf("el valor del row es %d \n" , row);
+             if(aux1[col]==1){
+                 printf("tocat \n");
+                 row1[col]='X';
+                 break;
+             }
+             else{
+                 printf("No tocat \n");
+                 row1[col]='N';
+                 break;
+             }
+        case 2:
+             printf("el valor del row es %d \n" , row);
+              if(aux2[col]==1){
+                 printf("tocat \n");
+                 row2[col]='X';
+             }
+             else{
+                 printf("No tocat \n");
+                 row2[col]='N';
+             }
+             break;
+        case 3:
+            if(aux3[col]==1){
+                 printf("tocat \n");
+                 row3[col]='X';
+                 break;
+             }
+             else{
+                 printf("No tocat \n");
+                 row3[col]='N';
+                 break;
+             }
+
+        case 4:
+             if(aux4[col]==1){
+                             printf("tocat \n");
+                             row4[col]='X';
+                             break;
+                         }
+                         else{
+                             printf("No tocat \n");
+                             row4[col]='N';
+                             break;
+                         }
+
+        case 5:
+             if(aux5[col]==1){
+                             printf("tocat \n");
+                             row5[col]='X';
+                             break;
+                         }
+                         else{
+                             printf("No tocat \n");
+                             row5[col]='N';
+                             break;
+                         }
+
+
+        case 6:
+             if(aux6[col]==1){
+                             printf("tocat \n");
+                             row6[col]='X';
+                             break;
+                         }
+                         else{
+                             printf("No tocat \n");
+                             row6[col]='N';
+                             break;
+                         }
+
+        case 7:
+             if(aux7[col]==1){
+                             printf("tocat \n");
+                             row7[col]='X';
+                             break;
+                         }
+                         else{
+                             printf("No tocat \n");
+                             row7[col]='N';
+                             break;
+                         }
+
+
+        case 8:
+             if(aux8[col]==1){
+                             printf("tocat \n");
+                             row8[col]='X';
+                             break;
+                         }
+                         else{
+                             printf("No tocat \n");
+                             row8[col]='N';
+                             break;
+                         }
+       case 9:
+           if(aux9[col]==1){
+                           printf("tocat \n");
+                           row9[col]='X';
+                           break;
+                       }
+                       else{
+                           printf("No tocat \n");
+                           row9[col]='N';
+                           break;
+                       }
+
+        case 10:
+             if(aux10[col]==1){
+                             printf("tocat \n");
+                             row10[col]='X';
+                             break;
+                         }
+                         else{
+                             printf("No tocat \n");
+                             row10[col]='N';
+                             break;
+                         }
+
+    }
+    /**printem la nova taula **/
+    printf("   %s \n 1| %s \n 2| %s \n 3| %s \n 4| %s \n 5| %s \n 6| %s \n 7| %s \n 8| %s \n 9| %s \n 10|%s \n", header, row1,row2,row3,row4,row5,row6,row7,row8,row9,row10);
+    return 0;
+}
+
+
+
+
